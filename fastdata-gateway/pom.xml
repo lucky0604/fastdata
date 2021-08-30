@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>fastdata-gateway-admin</module>
+        <module>fastdata-gateway-web</module>
     </modules>
 
     <properties>

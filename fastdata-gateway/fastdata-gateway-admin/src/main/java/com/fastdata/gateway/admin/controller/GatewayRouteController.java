@@ -2,6 +2,8 @@ package com.fastdata.gateway.admin.controller;
 
 import com.fastdata.common.core.entity.vo.Result;
 import com.fastdata.gateway.admin.entity.form.GatewayRouteForm;
+import com.fastdata.gateway.admin.entity.form.GatewayRouteQueryForm;
+import com.fastdata.gateway.admin.entity.param.GatewayRouteQueryParam;
 import com.fastdata.gateway.admin.entity.po.GatewayRoute;
 import com.fastdata.gateway.admin.entity.vo.GatewayRouteVo;
 import com.fastdata.gateway.admin.service.IGatewayRouteService;
@@ -70,5 +72,27 @@ public class GatewayRouteController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "handle success", response = Result.class)
     )
+    public Result getByUri(@RequestParam String uri) {
+        return Result.success(gatewayRouteService.query(new GatewayRouteQueryParam(uri)).stream().findFirst());
+    }
+
+    @ApiOperation(value = "search gateway route", notes = "search gateway route")
+    @ApiImplicitParam(name = "gatewayRouteQueryForm", value = "gateway query params", required = true, dataType = "GatewayRouteQueryForm")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "success", response = Result.class)
+    )
+    @PostMapping(value = "/conditions")
+    public Result search(@Valid @RequestBody GatewayRouteQueryForm gatewayRouteQueryForm) {
+        return Result.success(gatewayRouteService.query(gatewayRouteQueryForm.toParam(GatewayRouteQueryParam.class)));
+    }
+
+    @ApiOperation(value = "overload the gateway route", notes = "reload the gateway route into redis")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "success", response = Result.class)
+    )
+    @PostMapping(value = "/overload")
+    public Result overload() {
+        return Result.success(gatewayRouteService.overload());
+    }
 
 }

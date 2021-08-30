@@ -1,0 +1,85 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    lettuce:
+      pool:
+        max-active: 300
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
+  cloud:
+    gateway:
+      default-filters:
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY
+        - AddResponseHeader=X-Response-Default-Foo,Default-Bar
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 2
+            redis-rate-limiter.burstCapacity: 10
+            rate-limiter: "#{@defaultRedisRateLimiter}"
+            key-resolver: "#{@apiKeyResolver}"
+
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+
+jetcache:
+  statIntervalMinutes: 1
+  areaInCacheName: false
+  hidePackages: com.fastdata
+  local:
+    default:
+      type: caffeine
+      keyConvertor: fastjson
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+gate:
+  ignore:
+    authentication:
+      startWith: /oauth,/open,/v2/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    com.fastdata: debug
+    com.jalja.org.spring: debug
+  path: logs/
+  file:
+    max-size: 1GB
