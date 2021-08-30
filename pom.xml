@@ -7,6 +7,9 @@
     <modules>
         <module>fastdata-auth</module>
         <module>fastdata-common</module>
+        <module>fastdata-center</module>
+        <module>fastdata-gateway</module>
+        <module>fastdata-webapps</module>
     </modules>
     <groupId>org.fastdata</groupId>
     <artifactId>fastdata</artifactId>
