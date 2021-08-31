@@ -1,5 +1,16 @@
 package com.fastdata.sysadmin.organization.entity.form;
 
+import com.fastdata.common.web.entity.form.BaseQueryForm;
+import com.fastdata.sysadmin.organization.entity.param.MenuQueryParam;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import java.util.Date;
+
 /**
  * @Author: lucky
  * @License: (C) Copyright
@@ -7,7 +18,22 @@ package com.fastdata.sysadmin.organization.entity.form;
  * @Date: 8/31/21 6:39 PM
  * @Version: 1.0
  * @Description:
-**/
+ **/
+@ApiModel
+@Data
+public class MenuQueryForm extends BaseQueryForm<MenuQueryParam> {
 
-public class MenuQueryForm {
+    @NotBlank(message = "menu name can't be blank")
+    @ApiModelProperty(value = "menu name", required = true)
+    private String name;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "query start time must be less than current time")
+    @ApiModelProperty(value = "query start time")
+    private Date createdTimeStart;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Past(message = "query end time must be less than current time")
+    @ApiModelProperty(value = "query end time")
+    private Date createdTimeEnd;
 }

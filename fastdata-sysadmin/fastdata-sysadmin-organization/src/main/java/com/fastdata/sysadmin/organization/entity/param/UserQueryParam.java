@@ -1,5 +1,11 @@
 package com.fastdata.sysadmin.organization.entity.param;
 
+import com.fastdata.common.web.entity.param.BaseParam;
+import com.fastdata.sysadmin.organization.entity.po.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @Author: lucky
  * @License: (C) Copyright
@@ -7,7 +13,13 @@ package com.fastdata.sysadmin.organization.entity.param;
  * @Date: 8/31/21 6:35 PM
  * @Version: 1.0
  * @Description:
-**/
+ **/
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserQueryParam extends BaseParam<User> {
 
-public class UserQueryParam {
+    private String name;
+    private String mobile;
+    private String username;
 }

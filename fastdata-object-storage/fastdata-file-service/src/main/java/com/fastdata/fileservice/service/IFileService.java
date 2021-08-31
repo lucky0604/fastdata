@@ -13,7 +13,7 @@ import java.io.InputStream;
  * @Description:
  **/
 
-public interface FileService {
+public interface IFileService {
 
     String uploadFile(MultipartFile file, String bucketName);
 

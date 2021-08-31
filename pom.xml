@@ -10,6 +10,9 @@
         <module>fastdata-center</module>
         <module>fastdata-gateway</module>
         <module>fastdata-webapps</module>
+        <module>fastdata-monitor</module>
+        <module>fastdata-object-storage</module>
+        <module>fastdata-sysadmin</module>
     </modules>
     <groupId>org.fastdata</groupId>
     <artifactId>fastdata</artifactId>

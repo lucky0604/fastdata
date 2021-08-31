@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fastdata-object-storage</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>fastdata-file-service</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

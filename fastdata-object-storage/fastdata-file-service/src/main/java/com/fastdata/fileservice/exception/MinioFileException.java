@@ -1,5 +1,8 @@
 package com.fastdata.fileservice.exception;
 
+import com.fastdata.common.core.exception.BaseException;
+import com.fastdata.common.core.exception.ErrorType;
+
 /**
  * @Author: lucky
  * @License: (C) Copyright
@@ -7,7 +10,19 @@ package com.fastdata.fileservice.exception;
  * @Date: 8/31/21 3:47 PM
  * @Version: 1.0
  * @Description:
-**/
+ **/
 
-public class MinioFileException {
+public class MinioFileException extends BaseException {
+
+    public MinioFileException() {
+        super(MinioFileType.FILE_GET_FAILED);
+    }
+
+    public MinioFileException(String msg) {
+        super(MinioFileType.FILE_UPLOAD_FAILED, msg);
+    }
+
+    public MinioFileException(ErrorType errorType, String msg) {
+        super(errorType, msg);
+    }
 }
