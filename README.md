@@ -12,7 +12,6 @@
 
 ## About the Project
 
-Here you can provide more details about the project
 * Microservices of one-stop annotation tool
 * Multiple programming languages (Python, Scala, Java)
 * Spark / Flink real-time computation injection
