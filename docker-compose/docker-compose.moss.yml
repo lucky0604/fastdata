@@ -1,0 +1,26 @@
+version: '3'
+services:
+  moss-db-init:
+    image: mysql:5.7
+    command: /init-db.sh
+    networks:
+      - fastdata-net
+    volumes:
+      - ./moss/mysql:/sql
+      - ./init-db.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+  moss:
+    image: w304807481/moss-web:latest
+    container_name: moss
+    restart: always
+    networks:
+      - fastdata-net
+    ports:
+      - 8086:8086
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - moss-db-init

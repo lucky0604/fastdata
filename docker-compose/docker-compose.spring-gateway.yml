@@ -1,0 +1,26 @@
+
+version: '3'
+services:
+  fastdata-gateway-web:
+    image: cike/fastdata-gateway-web:latest
+    container_name: fastdata-gateway-web
+    restart: always
+    networks:
+      - fastdata-net
+    ports:
+      - 8443:8443
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  fastdata-gateway-admin:
+    image: cike/fastdata-gateway-admin:latest
+    container_name: fastdata-gateway-admin
+    restart: always
+    networks:
+      - fastdata-net
+    ports:
+      - 8445:8445
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

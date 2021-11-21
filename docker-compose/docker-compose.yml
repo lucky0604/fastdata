@@ -1,0 +1,62 @@
+version: '3'
+services:
+  redis:
+    image: redis:alpine
+    container_name: fastdata-redis
+    restart: always
+    volumes:
+      - ../data/redis:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    networks:
+      - fastdata-net
+    ports:
+      - 6379:6379
+    env_file: .env
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: fastdata-rabbitmq
+    restart: always
+    volumes:
+      - ../data/rabbitmq:/var/lib/rabbitmq/mnesis
+    networks:
+      - fastdata-net
+    ports:
+      - 5672:5672
+      - 15672:15672
+    env_file: .env
+
+  mysql:
+    image: mysql:5.7
+    container_name: fastdata-mysql
+    restart: always
+    networks:
+      - fastdata-net
+    ports:
+      - 3306:3306
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
+
+  mysql-init:
+    image: mysql:5.7
+    container_name: fastdata-mysql-init
+    command: /init-db.sh
+    networks:
+      - fastdata-net
+    volumes:
+      - ../fastdata-auth/db:/sql/auth
+      - ../fastdata-gateway/fastdata-gateway-admin/src/main/db:/sql/fastdata-gateway
+      - ../fastdata-sysadmin/db:/sql/fastdata-sysadmin
+      - ./init-db.sh:/init-db.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    depends_on:
+      - mysql
+
+networks:
+  fastdata-net:
+    external: false

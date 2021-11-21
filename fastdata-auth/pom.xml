@@ -14,7 +14,7 @@
         <module>fastdata-auth-client</module>
         <module>fastdata-authorization-server</module>
     </modules>
-
+    <version>1.0-SNAPSHOT</version>
     <artifactId>fastdata-auth</artifactId>
 
     <properties>

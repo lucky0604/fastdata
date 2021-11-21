@@ -1,0 +1,13 @@
+version: '3'
+services:
+  bus-server:
+    image: cike/bus-server:latest
+    container_name: fastdata-bus
+    restart: always
+    networks:
+      - fastdata-net
+    ports:
+      - 8071:8071
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

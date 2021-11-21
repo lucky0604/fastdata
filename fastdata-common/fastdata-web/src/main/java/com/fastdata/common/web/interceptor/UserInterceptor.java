@@ -1,10 +1,10 @@
 package com.fastdata.common.web.interceptor;
 
-import brave.internal.Nullable;
 import com.fastdata.common.core.util.UserContextHolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
