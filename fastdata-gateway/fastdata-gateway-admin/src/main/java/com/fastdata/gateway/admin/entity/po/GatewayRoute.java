@@ -21,7 +21,7 @@ public class GatewayRoute extends BasePo {
     private String routeId;
     private String predicates;
     private String filters;
-    private String desc;
+    private String description;
     private Integer orders = 0;
     private String status = "Y";
 }

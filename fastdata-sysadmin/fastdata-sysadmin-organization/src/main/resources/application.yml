@@ -17,9 +17,9 @@ spring:
     #password: ${REDIS_PASSWORD:123456}
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/fastdata_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
-    password: ${DATASOURCE_PASSWORD:root123}
+    password: ${DATASOURCE_PASSWORD:123456}
   zipkin:
     enabled: true
     sender:
@@ -41,7 +41,7 @@ spring:
 jetcache:
   statIntervalMinutes: 15
   areaInCacheName: false
-  hidePackages: com.springboot.cloud
+  hidePackages: com.fastdata
   local:
     # 默认2小时本地缓存
     default:
@@ -58,7 +58,7 @@ jetcache:
     # 短時本地緩存，主要用于要求时效较高的配置
     shortTime:
       type: caffeine
-      keyConvertor: fastjsn
+      keyConvertor: fastjson
       expireAfterWriteInMillis: 60000
       expireAfterAccessInMillis: 40000
   remote:

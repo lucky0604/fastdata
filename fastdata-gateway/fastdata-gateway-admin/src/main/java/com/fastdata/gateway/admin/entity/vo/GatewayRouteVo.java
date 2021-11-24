@@ -30,7 +30,7 @@ public class GatewayRouteVo extends BaseVo {
 
     private String id;
     private String routeId;
-    private String desc;
+    private String description;
     private String status;
     private String uri;
     private Integer orders;
@@ -45,7 +45,7 @@ public class GatewayRouteVo extends BaseVo {
         this.id = gatewayRoute.getId();
         this.routeId = gatewayRoute.getRouteId();
         this.uri = gatewayRoute.getUri();
-        this.desc = gatewayRoute.getDesc();
+        this.description = gatewayRoute.getDescription();
         this.status = gatewayRoute.getStatus();
         this.orders = gatewayRoute.getOrders();
         this.createdBy = gatewayRoute.getCreatedBy();

@@ -1,6 +1,6 @@
-package com.fastdata.gateway.web.config;
+package com.fastdata.gateway.config;
 
-import com.fastdata.gateway.web.events.BusReceiver;
+import com.fastdata.gateway.events.BusReceiver;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,14 +16,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 /**
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/30/21 11:37 PM
+ * @Date: 2021/11/24 - 15:21
  * @Version: 1.0
  * @Description:
  **/
+
 @Configuration
 @Slf4j
 public class BusConfig {

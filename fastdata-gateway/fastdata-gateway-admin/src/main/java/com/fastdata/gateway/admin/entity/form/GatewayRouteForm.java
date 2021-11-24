@@ -51,7 +51,7 @@ public class GatewayRouteForm extends BaseForm<GatewayRoute> {
     private Integer orders = 0;
 
     @ApiModelProperty(value = "gateway route desc")
-    private String desc;
+    private String description;
 
     @Override
     public GatewayRoute toPo(Class<GatewayRoute> clazz) {

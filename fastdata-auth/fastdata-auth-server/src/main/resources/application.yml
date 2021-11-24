@@ -49,7 +49,7 @@ jetcache:
 
 logging:
   level:
-    com.fastdata.cloud: debug
+    com.fastdata: debug
     org.springframework.web: debug
     org.springframework.security: debug
   path: logs/

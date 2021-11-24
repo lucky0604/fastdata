@@ -9,6 +9,7 @@ import com.fastdata.common.core.entity.vo.Result;
 import com.fastdata.sysadmin.organization.entity.po.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;

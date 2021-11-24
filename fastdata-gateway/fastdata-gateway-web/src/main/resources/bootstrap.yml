@@ -2,7 +2,7 @@ server:
   port: ${SERVER_PORT:8443}
 spring:
   application:
-    name: gateway-web
+    name: fastdata-gateway-web
   cloud:
     nacos:
       discovery:

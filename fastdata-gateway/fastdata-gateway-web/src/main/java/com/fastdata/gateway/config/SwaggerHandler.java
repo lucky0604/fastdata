@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web.config;
+package com.fastdata.gateway.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +15,18 @@ import java.util.Optional;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/31/21 12:08 AM
+ * @Date: 2021/11/24 - 16:14
  * @Version: 1.0
  * @Description:
  **/
+
 @RestController
 @RequestMapping("/swagger-resources")
 public class SwaggerHandler {
 
     @Autowired(required = false)
     private SecurityConfiguration securityConfiguration;
+
     @Autowired(required = false)
     private UiConfiguration uiConfiguration;
 
@@ -38,21 +40,19 @@ public class SwaggerHandler {
     @GetMapping("/configuration/security")
     public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {
         return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(securityConfiguration)
-                        .orElse(SecurityConfigurationBuilder.builder().build()), HttpStatus.OK
+                Optional.ofNullable(securityConfiguration).orElse(SecurityConfigurationBuilder.builder().build()), HttpStatus.OK
         ));
     }
 
     @GetMapping("/configuration/ui")
     public Mono<ResponseEntity<UiConfiguration>> uiConfiguration() {
         return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(uiConfiguration).orElse(UiConfigurationBuilder.builder().build()),
-                HttpStatus.OK
+                Optional.ofNullable(uiConfiguration).orElse(UiConfigurationBuilder.builder().build()), HttpStatus.OK
         ));
     }
 
     @GetMapping("")
     public Mono<ResponseEntity> swaggerResources() {
-        return Mono.just(new ResponseEntity(swaggerResources.get(), HttpStatus.OK));
+        return Mono.just((new ResponseEntity<>(swaggerResources.get(), HttpStatus.OK)));
     }
 }

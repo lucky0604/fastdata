@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web.config;
+package com.fastdata.gateway.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
@@ -10,16 +10,17 @@ import reactor.core.publisher.Mono;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/30/21 11:59 PM
+ * @Date: 2021/11/24 - 16:07
  * @Version: 1.0
  * @Description:
  **/
+
 @Component
 public class RequestRateLimiterConfig {
 
     @Bean
     @Primary
-    public KeyResolver remoteAddressResolver() {
+    public KeyResolver remoteAddressKeyResolver() {
         return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
     }
 
@@ -32,6 +33,4 @@ public class RequestRateLimiterConfig {
     public KeyResolver userKeyResolver() {
         return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("username"));
     }
-
-
 }

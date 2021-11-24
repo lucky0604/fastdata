@@ -27,7 +27,7 @@ spring:
 
 logging:
   level:
-    com.fastdata.fileservice
+    com.fastdata.fileservice: debug
   path: logs/${spring.application.name}
   file:
     max-size: 1GB

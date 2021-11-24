@@ -41,5 +41,5 @@ public class ResourceForm extends BaseForm<Resource> {
     private String method;
 
     @ApiModelProperty(value = "resource desc")
-    private String desc;
+    private String description;
 }

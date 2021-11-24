@@ -1,9 +1,9 @@
 SET NAMES utf8;
 
-DROP DATABASE IF EXISTS sc_gateway;
-CREATE DATABASE sc_gateway DEFAULT CHARSET utf8mb4;
+DROP DATABASE IF EXISTS fastdata_gateway;
+CREATE DATABASE fastdata_gateway DEFAULT CHARSET utf8mb4;
 
-USE sc_gateway;
+USE fastdata_gateway;
 
 -- 网关路由表
 DROP TABLE IF EXISTS gateway_route;

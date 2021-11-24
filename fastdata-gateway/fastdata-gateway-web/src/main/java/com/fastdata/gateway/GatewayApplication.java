@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web;
+package com.fastdata.gateway;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
@@ -12,10 +12,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/31/21 1:07 AM
+ * @Date: 2021/11/24 - 13:56
  * @Version: 1.0
  * @Description:
  **/
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.fastdata.auth.client")
@@ -23,6 +24,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableMethodCache(basePackages = "com.fastdata")
 @EnableCreateCacheAnnotation
 public class GatewayApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }

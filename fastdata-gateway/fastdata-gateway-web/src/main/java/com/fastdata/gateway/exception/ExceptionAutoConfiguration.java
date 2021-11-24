@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web.exception;
+package com.fastdata.gateway.exception;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -25,10 +25,11 @@ import java.util.List;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/31/21 12:36 AM
+ * @Date: 2021/11/24 - 14:15
  * @Version: 1.0
  * @Description:
  **/
+
 @Configuration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 @ConditionalOnClass(WebFluxConfigurer.class)
@@ -40,26 +41,24 @@ public class ExceptionAutoConfiguration {
     private ApplicationContext applicationContext;
     private ResourceProperties resourceProperties;
     private List<ViewResolver> viewResolvers;
+
     private ServerCodecConfigurer serverCodecConfigurer;
 
     public ExceptionAutoConfiguration(ServerProperties serverProperties,
                                       ResourceProperties resourceProperties,
-                                      ObjectProvider<List<ViewResolver>> viewResourceProvider,
+                                      ObjectProvider<List<ViewResolver>> viewResolversProvider,
                                       ServerCodecConfigurer serverCodecConfigurer,
                                       ApplicationContext applicationContext) {
         this.serverProperties = serverProperties;
         this.applicationContext = applicationContext;
         this.resourceProperties = resourceProperties;
-        this.viewResolvers = viewResourceProvider.getIfAvailable(() -> Collections.emptyList());
+        this.viewResolvers = viewResolversProvider.getIfAvailable(() -> Collections.emptyList());
         this.serverCodecConfigurer = serverCodecConfigurer;
     }
 
     @Bean
     public ErrorWebExceptionHandler errorWebExceptionHandler(ErrorAttributes errorAttributes) {
-        DefaultErrorWebExceptionHandler exceptionHandler = new CustomErrorWebExceptionHandler(
-                errorAttributes, this.resourceProperties, this.serverProperties.getError(),
-                this.applicationContext
-        );
+        DefaultErrorWebExceptionHandler exceptionHandler = new CustomErrorWebExceptionHandler(errorAttributes, this.resourceProperties, this.serverProperties.getError(), this.applicationContext);
         exceptionHandler.setViewResolvers(this.viewResolvers);
         exceptionHandler.setMessageWriters(this.serverCodecConfigurer.getWriters());
         exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());

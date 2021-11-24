@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web.exception;
+package com.fastdata.gateway.exception;
 
 import com.fastdata.common.core.entity.vo.Result;
 import com.fastdata.common.core.exception.SystemErrorType;
@@ -18,14 +18,14 @@ import org.springframework.web.server.ResponseStatusException;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/31/21 12:22 AM
+ * @Date: 2021/11/24 - 14:33
  * @Version: 1.0
  * @Description:
  **/
 
 @Slf4j
 @Component
-public class GatewayExceptionHandlerAdvice {
+public class GateWayExceptionHandlerAdvice {
 
     @ExceptionHandler(value = {ResponseStatusException.class})
     public Result handle(ResponseStatusException ex) {
@@ -40,44 +40,41 @@ public class GatewayExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(value = {NotFoundException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result handle(NotFoundException ex) {
         log.error("not found exception: {}", ex.getMessage());
         return Result.fail(SystemErrorType.GATEWAY_NOT_FOUND_SERVICE);
     }
 
     @ExceptionHandler(value = {ExpiredJwtException.class})
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public Result handle(ExpiredJwtException ex) {
-        log.error("ExpiredJwtException: {}", ex.getMessage());
+        log.error("expired jwt exception: {}", ex.getMessage());
         return Result.fail(SystemErrorType.INVALID_TOKEN);
     }
 
     @ExceptionHandler(value = {SignatureException.class})
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public Result handle(SignatureException ex) {
-        log.error("SignatureException: {}", ex.getMessage());
+        log.error("signature exception: {}", ex.getMessage());
         return Result.fail(SystemErrorType.INVALID_TOKEN);
     }
 
     @ExceptionHandler(value = {MalformedJwtException.class})
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public Result handle(MalformedJwtException ex) {
-        log.error("MalformedJwtException:{}", ex.getMessage());
+        log.error("malformed jwt exception: {}", ex.getMessage());
         return Result.fail(SystemErrorType.INVALID_TOKEN);
     }
 
     @ExceptionHandler(value = {RuntimeException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result handle(RuntimeException ex) {
-        log.error("runtime exception:{}", ex.getMessage());
+        log.error("runtime exception: {}", ex.getMessage());
         return Result.fail();
     }
 
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result handle(Exception ex) {
-        log.error("exception:{}", ex.getMessage());
+        log.error("exception: {}", ex.getMessage());
         return Result.fail();
     }
 

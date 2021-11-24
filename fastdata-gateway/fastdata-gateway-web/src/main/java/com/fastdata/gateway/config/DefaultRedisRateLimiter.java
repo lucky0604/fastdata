@@ -1,4 +1,4 @@
-package com.fastdata.gateway.web.config;
+package com.fastdata.gateway.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
@@ -14,10 +14,11 @@ import java.util.List;
  * @Author: lucky
  * @License: (C) Copyright
  * @Contact: lucky_soft@163.com
- * @Date: 8/30/21 11:53 PM
+ * @Date: 2021/11/24 - 15:59
  * @Version: 1.0
  * @Description:
  **/
+
 @Configuration
 public class DefaultRedisRateLimiter extends RedisRateLimiter {
 
@@ -33,9 +34,8 @@ public class DefaultRedisRateLimiter extends RedisRateLimiter {
 
     @Override
     public Mono<Response> isAllowed(String routeId, String id) {
-        if (null == super.getConfig().get(routeId)) {
+        if (null == super.getConfig().get(routeId))
             getConfig().put(routeId, getDefaultConfig());
-        }
         return super.isAllowed(routeId, id);
     }
 }

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 services:
   nacos:
     image: nacos/nacos-server:1.1.3
@@ -24,3 +24,8 @@ services:
     depends_on:
       - nacos
     restart: on-failure
+
+networks:
+  fastdata-net:
+    name: fastdata-net
+    external: false

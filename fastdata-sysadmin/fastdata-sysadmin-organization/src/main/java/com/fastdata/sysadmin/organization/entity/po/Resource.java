@@ -25,5 +25,5 @@ public class Resource extends BasePo {
     private String url;
     private String method;
     private String name;
-    private String desc;
+    private String description;
 }

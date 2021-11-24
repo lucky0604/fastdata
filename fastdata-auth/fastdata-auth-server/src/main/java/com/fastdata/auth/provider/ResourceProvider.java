@@ -17,7 +17,7 @@ import java.util.Set;
  * @Description:
  **/
 
-@FeignClient(name = "organization", fallback = ResourceProviderFallback.class)
+@FeignClient(name = "fastdata-sysadmin-organization")
 public interface ResourceProvider {
     @GetMapping(value = "/resource/all")
     Result<Set<Resource>> resources();
